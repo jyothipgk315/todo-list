@@ -1,0 +1,64 @@
+<div class="hedding">
+  <b>Todo-List</b>
+  <div class="buttons">
+    <button
+      [routerLink]="['complete-list']"
+      [queryParams]="{ order: 'In-progress' }"
+    >
+      inprogress
+    </button>
+    <button
+      [routerLink]="['complete-list']"
+      [queryParams]="{ order: 'Completed' }"
+    >
+      completed
+    </button>
+    <button
+      [routerLink]="['complete-list']"
+      [queryParams]="{ order: 'Pending' }"
+    >
+      pending
+    </button>
+  </div>
+</div>
+<div class="container">
+  <form [formGroup]="Todolist" id="form_content">
+    <input type="text" #newTodo placeholder="Enter task" [formControl]="Task" />
+    <select #prio>
+      <option>high</option>
+      <option>medium</option>
+      <option>low</option>
+    </select>
+    <button
+      (click)="addtodo(newTodo.value, prio.value)"
+      [disabled]="Todolist.invalid"
+    >
+      add
+    </button>
+    <div *ngIf="Todolist.invalid" class="error">please fill this field</div>
+  </form>
+
+  <table>
+    <tr>
+      <td></td>
+      <td id="table_bottom">Label</td>
+      <td id="table_bottom">Priority</td>
+      <td id="table_bottom">status</td>
+    </tr>
+    <tr *ngFor="let todo of todos; let i = index">
+      <td style="vertical-align: top">&#8226;</td>
+      <td>{{ todo.task }}</td>
+      <td>{{ todo.priority }}</td>
+      <td>
+        <select (change)="selectChange1($event, i)">
+          <option hidden>{{ todo.status }}</option>
+          <option>Pending</option>
+          <option>In-progress</option>
+          <option>Completed</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<router-outlet></router-outlet>

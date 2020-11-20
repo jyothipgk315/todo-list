@@ -1,0 +1,17 @@
+<div class="container">
+  <h2>{{ order }} List</h2>
+  <table>
+    <tr>
+      <td></td>
+      <td id="table_bottom">Label</td>
+      <td id="table_bottom">Priority</td>
+      <td id="table_bottom">status</td>
+    </tr>
+    <tr *ngFor="let index of data">
+      <td style="vertical-align: top">&#8226;</td>
+      <td>{{ index.task }}</td>
+      <td>{{ index.priority }}</td>
+      <td>{{ index.status }}</td>
+    </tr>
+  </table>
+</div>
